@@ -1,0 +1,50 @@
+# Le Terminal — Theme Configuration Defaults
+# These settings are automatically merged with the site configuration.
+#
+# outputFormats defines the HTMX fragment format used by the theme.
+# The site must also configure 'outputs' in its own hugo.yaml to enable it.
+
+outputFormats:
+  fragment:
+    baseName: "fragment"
+    isPlainText: false
+    mediaType: "text/html"
+    notAlternative: true
+
+# Default colour palette — override any value in your site's hugo.yaml
+# under params.colors.dark / params.colors.light.
+params:
+  colors:
+    dark:
+      termBg: "#1d2021"
+      termChromeBg: "#282828"
+      pageBg: "#0a0e1a"
+      termBorder: "#7daea3"
+      termBorderGlow: "rgba(30, 100, 200, 0.5)"
+      termText: "#ebdbb2"
+      termTextDim: "#928374"
+      termPrompt: "#b8bb26"
+      termCommand: "#83a598"
+      termHeading: "#fabd2f"
+      termLink: "#83a598"
+      termLinkHover: "#8ec07c"
+      termError: "#fb4934"
+      termSuccess: "#b8bb26"
+      radioRed: "#ff5f56"
+      radioYellow: "#ffbd2e"
+      radioGreen: "#27c93f"
+    light:
+      termBg: "#fbf1c7"
+      termChromeBg: "#d5c4a1"
+      pageBg: "#504945"
+      termBorder: "#7daea3"
+      termBorderGlow: "rgba(181, 118, 20, 0.25)"
+      termText: "#3c3836"
+      termTextDim: "#655751"
+      termPrompt: "#79740e"
+      termCommand: "#076678"
+      termHeading: "#b57614"
+      termLink: "#076678"
+      termLinkHover: "#427b58"
+      termError: "#cc241d"
+      termSuccess: "#79740e"

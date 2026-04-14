@@ -1,0 +1,21 @@
+{{/* terminal-table shortcode — two-column terminal-style layout */}}
+{{/* Usage:
+{{< terminal-table >}}
+Frontend: | Backend:
+React, TypeScript | Node.js, Python
+{{< /terminal-table >}}
+*/}}
+<div class="terminal-table">
+  {{ $rows := split .Inner "\n" }}
+  {{ range $rows }}
+    {{ $trimmed := strings.TrimSpace . }}
+    {{ if $trimmed }}
+      {{ $cols := split $trimmed "|" }}
+      <div class="terminal-table__row">
+        {{ range $cols }}
+          <div class="terminal-table__col">{{ strings.TrimSpace . | markdownify }}</div>
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ end }}
+</div>

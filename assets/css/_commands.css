@@ -1,0 +1,44 @@
+/* ==============================================
+   Command Bar — Prompt & Command Links
+   ============================================== */
+.command-bar {
+  margin-top: 16px;
+  padding-top: 8px;
+}
+
+.command-bar__prompt {
+  color: var(--term-prompt);
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+  margin-bottom: 8px;
+}
+
+.command-bar__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-left: 0;
+}
+
+.terminal-command {
+  color: var(--term-link);
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.15s;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.terminal-command:hover {
+  color: var(--term-link-hover);
+}
+
+.terminal-command:focus-visible {
+  outline: 2px solid var(--term-link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

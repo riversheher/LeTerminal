@@ -1,0 +1,110 @@
+/* ==============================================
+   Terminal Chrome — Title Bar
+   ============================================== */
+.terminal-chrome {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--term-chrome-bg);
+  border-top-left-radius: var(--term-border-radius);
+  border-top-right-radius: var(--term-border-radius);
+  user-select: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Radio Buttons (decorative) */
+.terminal-chrome__buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.terminal-chrome__button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  display: inline-block;
+}
+
+.terminal-chrome__button--close {
+  background-color: var(--radio-red);
+}
+
+.terminal-chrome__button--minimize {
+  background-color: var(--radio-yellow);
+}
+
+.terminal-chrome__button--maximize {
+  background-color: var(--radio-green);
+}
+
+/* Title Text */
+.terminal-chrome__title {
+  flex: 1;
+  text-align: center;
+  color: var(--term-text-dim);
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+  font-weight: 400;
+}
+
+/* Mode Toggle Button */
+.terminal-chrome__mode-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--term-text-dim);
+  font-family: var(--term-font);
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.terminal-chrome__mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--term-text);
+}
+
+/* Controls wrapper (theme toggle + mode toggle) */
+.terminal-chrome__controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Theme Toggle Button */
+.terminal-chrome__theme-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--term-text-dim);
+  font-family: var(--term-font);
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.terminal-chrome__theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--term-text);
+}
+
+/* Light mode button adjustments */
+[data-theme="light"] .terminal-chrome__mode-toggle,
+[data-theme="light"] .terminal-chrome__theme-toggle {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.18);
+  color: #504945;
+}
+
+[data-theme="light"] .terminal-chrome__mode-toggle:hover,
+[data-theme="light"] .terminal-chrome__theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.14);
+  color: #3c3836;
+}

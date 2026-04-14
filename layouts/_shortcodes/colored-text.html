@@ -1,0 +1,3 @@
+{{/* colored-text shortcode — wraps text in a coloured span */}}
+{{/* Usage: {{< colored-text color="#e06c75" >}}Error text{{< /colored-text >}} */}}
+<span style="color: {{ .Get "color" | default "var(--term-text)" }};">{{ .Inner }}</span>

@@ -1,0 +1,47 @@
+/* ==============================================
+   Terminal Body — Output Area, Scrolling, Cursor
+   ============================================== */
+.terminal-body {
+  background: var(--term-bg);
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1 1 0;
+  min-height: 0;
+  border-bottom-left-radius: var(--term-border-radius);
+  border-bottom-right-radius: var(--term-border-radius);
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: var(--term-bg);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: var(--term-text-dim);
+  border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--term-text);
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background: var(--term-prompt);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

@@ -1,0 +1,26 @@
+{{/* Persistent home content — profile card and welcome message */}}
+<div class="profile-card">
+  <div class="profile-card__avatar {{ if not .Site.Params.profileImage }}profile-card__avatar--initials{{ end }}">
+    {{ if .Site.Params.profileImage }}
+      <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+    {{ else }}
+      {{ .Site.Params.profileInitials | default "?" }}
+    {{ end }}
+  </div>
+  <div class="profile-card__info">
+    <h1 class="profile-card__name">{{ .Site.Params.profileName | default "Developer" }}</h1>
+    <p class="profile-card__subtitle">{{ .Site.Params.profileSubtitle | default "" }}</p>
+    {{ with .Site.Params.profileBio }}
+      <p class="profile-card__bio">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="welcome-message">
+  <p class="welcome-message__title">
+    Welcome to {{ .Site.Params.siteName | default "Portfolio Terminal" }} {{ .Site.Params.siteVersion | default "" }}
+  </p>
+  <p class="welcome-message__hint">
+    Type "help" to see available commands.
+  </p>
+</div>

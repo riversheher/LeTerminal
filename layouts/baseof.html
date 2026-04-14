@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="desktop" id="desktop">
+    <div class="terminal-window">
+      {{/* Title bar */}}
+      {{ partial "terminal-chrome.html" . }}
+
+      {{/* Scrollable terminal body */}}
+      <div class="terminal-body" id="terminal-body" role="log" aria-live="polite">
+
+        {{/* Persistent home content — never cleared */}}
+        <div id="home-content">
+          {{ partial "home-content.html" . }}
+        </div>
+
+        {{/* Dynamic content area — HTMX target */}}
+        <div id="dynamic-content">
+          {{ block "main" . }}{{ end }}
+        </div>
+
+        {{/* Command input bar — always at bottom of content flow */}}
+        {{ partial "command-bar.html" . }}
+
+      </div>
+    </div>
+  </div>
+
+  {{ partial "footer.html" . }}
+</body>
+</html>

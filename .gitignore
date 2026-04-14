@@ -1,0 +1,5 @@
+.github
+.vscode
+.playwright-mcp
+public
+.hugo_build.lock

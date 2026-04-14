@@ -1,0 +1,21 @@
+{{/* Command bar — prompt and clickable command links */}}
+<div class="command-bar" id="command-bar">
+  <p class="command-bar__prompt">$ Click a command:</p>
+  <div class="command-bar__links">
+    {{ range .Site.Params.commands }}
+    <a href="/{{ .name }}/"
+       hx-get="/{{ .name }}/fragment.html"
+       hx-target="#dynamic-content"
+       hx-swap="beforeend"
+       hx-push-url="false"
+       class="terminal-command">
+      {{ .label }}
+    </a>
+    {{ end }}
+    <a href="#"
+       onclick="clearTerminal(); return false;"
+       class="terminal-command">
+      clear
+    </a>
+  </div>
+</div>

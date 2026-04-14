@@ -1,0 +1,18 @@
+<div class="terminal-chrome">
+  <div class="terminal-chrome__buttons">
+    <span class="terminal-chrome__button terminal-chrome__button--close"></span>
+    <span class="terminal-chrome__button terminal-chrome__button--minimize"></span>
+    <span class="terminal-chrome__button terminal-chrome__button--maximize"></span>
+  </div>
+  <span class="terminal-chrome__title">
+    {{ .Site.Params.terminalTitle | default "terminal@portfolio:~" }}
+  </span>
+  <div class="terminal-chrome__controls">
+    <button class="terminal-chrome__theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" onclick="toggleTheme()">
+      <span class="terminal-chrome__btn-icon" id="theme-toggle-icon">☀</span><span class="terminal-chrome__btn-label" id="theme-toggle-label"> Light</span>
+    </button>
+    <button class="terminal-chrome__mode-toggle" id="mode-toggle" aria-label="Toggle keyboard mode">
+      <span class="terminal-chrome__btn-icon">⌨</span><span class="terminal-chrome__btn-label"> Keyboard Mode</span>
+    </button>
+  </div>
+</div>

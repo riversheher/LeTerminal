@@ -1,0 +1,35 @@
+/* ==============================================
+   CSS Custom Properties — Le Terminal Theme
+
+   Colour values are injected from hugo.yaml via
+   head.html. Only structural (non-colour) defaults
+   are defined here.
+   ============================================== */
+:root {
+  /* Border */
+  --term-border-radius:   12px;
+
+  /* Page Background Image (structural defaults) */
+  --page-bg-image:        none;
+  --page-bg-size:         cover;
+  --page-bg-position:     center;
+  --page-bg-attachment:   fixed;
+  --page-bg-overlay:      rgba(0, 0, 0, 0.3);
+  --page-bg-overlay-display: none;
+
+  /* Typography */
+  --term-font:            'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+  --term-font-size:       14px;
+  --term-line-height:     1.6;
+}
+
+/* ==============================================
+   Light Mode Structural Defaults
+
+   Colour overrides for light mode are injected
+   via head.html from hugo.yaml configuration.
+   ============================================== */
+[data-theme="light"] {
+  /* Page Background Image (light-specific structural default) */
+  --page-bg-image-light:  none;
+}

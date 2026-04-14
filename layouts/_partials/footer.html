@@ -1,0 +1,6 @@
+{{/* Footer — Scripts */}}
+{{ $htmx := resources.Get "js/htmx.min.js" }}
+{{ $terminal := resources.Get "js/terminal.js" }}
+
+<script src="{{ $htmx.RelPermalink }}"></script>
+<script src="{{ $terminal.RelPermalink }}"></script>

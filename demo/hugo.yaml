@@ -1,0 +1,53 @@
+baseURL: "http://localhost:1313/"
+languageCode: "en-us"
+title: "Portfolio Terminal"
+theme: "TerminalHugo"
+
+params:
+  terminalTitle: "terminal@portfolio:~"
+  siteName: "Portfolio Terminal"
+  siteVersion: "v1.0.0"
+  profileName: "John Developer"
+  profileSubtitle: "Full Stack Developer | Problem Solver | Tech Enthusiast"
+  profileBio: "Building elegant solutions for complex challenges. Passionate about clean code, user experience, and continuous learning."
+  profileInitials: "JD"
+  # profileImage: "/images/profile.jpg"
+
+  commands:
+    - name: "help"
+      label: "help"
+    - name: "about"
+      label: "about"
+    - name: "projects"
+      label: "projects"
+    - name: "skills"
+      label: "skills"
+    - name: "contact"
+      label: "contact"
+
+  # Colour overrides — override individual dark/light mode colours.
+  # Omit entirely to use theme defaults. See theme hugo.yaml for all keys.
+  # colors:
+  #   dark:
+  #     pageBg: "#0a0e1a"
+  #   light:
+  #     pageBg: "#504945"
+
+  # background:
+  #   image: "/images/bg.jpg"            # Shared fallback (used if dark/lightImage not set)
+  #   darkImage: "/images/bg-dark.jpg"   # Dark mode only background
+  #   lightImage: "/images/bg-light.jpg" # Light mode only background
+  #   size: "cover"
+  #   position: "center"
+  #   attachment: "fixed"
+  #   overlayColor: "rgba(0,0,0,0.3)"       # Overlay for dark mode
+  #   lightOverlayColor: "rgba(0,0,0,0.15)" # Overlay for light mode
+
+# Output configuration — required for HTMX fragment rendering.
+# The 'fragment' outputFormat is defined by the theme; only 'outputs' is needed here.
+outputs:
+  home:
+    - HTML
+  page:
+    - HTML
+    - fragment

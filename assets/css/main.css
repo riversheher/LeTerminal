@@ -1,0 +1,89 @@
+/* ==============================================
+   Main — Desktop & Terminal Window Layout
+   ============================================== */
+
+/* Desktop background */
+.desktop {
+  background-color: var(--page-bg);
+  background-image: var(--page-bg-image, radial-gradient(ellipse at 50% 100%, rgba(30, 60, 150, 0.35) 0%, transparent 60%));
+  background-size: var(--page-bg-size);
+  background-position: var(--page-bg-position);
+  background-attachment: var(--page-bg-attachment);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Overlay for background images */
+.desktop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--page-bg-overlay);
+  z-index: 0;
+  pointer-events: none;
+  display: var(--page-bg-overlay-display, none);
+}
+
+/* Terminal window — fixed viewport-relative size */
+.terminal-window {
+  width: 100%;
+  max-width: 860px;
+  height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--term-border-radius);
+  outline: 2px solid var(--term-border);
+  box-shadow:
+    0 0 15px var(--term-border-glow),
+    0 0 40px rgba(30, 80, 180, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Command output blocks */
+.command-output {
+  margin-bottom: 16px;
+}
+
+.prompt-line {
+  margin-bottom: 4px;
+}
+
+.prompt {
+  color: var(--term-prompt);
+  font-weight: 700;
+}
+
+.command-echo {
+  color: var(--term-command);
+}
+
+.output-body {
+  padding-left: 16px;
+}
+
+/* Reset box model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ==============================================
+   Light Mode Layout Overrides
+   ============================================== */
+[data-theme="light"] .desktop {
+  background-image: var(--page-bg-image-light, var(--page-bg-image, none));
+}
+
+[data-theme="light"] .terminal-window {
+  box-shadow:
+    0 0 12px var(--term-border-glow),
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.10);
+}

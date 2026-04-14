@@ -1,0 +1,1 @@
+This is an example site used for testing purposes.  This is not meant to be used as template.  

@@ -1,0 +1,108 @@
+{{/* Theme preference — prevent flash of wrong theme */}}
+<script>
+  (function() {
+    var t = localStorage.getItem('theme');
+    if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      t = 'light';
+    }
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Site.Title | default "Le Terminal" }}</title>
+<meta name="description" content="{{ .Site.Params.profileBio | default "" }}">
+
+{{/* Google Fonts — JetBrains Mono */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+{{/* Bundled CSS via Hugo Pipes */}}
+{{ $vars     := resources.Get "css/_variables.css" }}
+{{ $chrome   := resources.Get "css/_terminal-chrome.css" }}
+{{ $body     := resources.Get "css/_terminal-body.css" }}
+{{ $commands := resources.Get "css/_commands.css" }}
+{{ $typo     := resources.Get "css/_typography.css" }}
+{{ $profile  := resources.Get "css/_profile.css" }}
+{{ $resp     := resources.Get "css/_responsive.css" }}
+{{ $main     := resources.Get "css/main.css" }}
+
+{{ $styles := slice $vars $chrome $body $commands $typo $profile $resp $main
+    | resources.Concat "css/terminal.css"
+    | minify | fingerprint }}
+
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+
+{{/* Colour palette — emitted from hugo.yaml with template-level fallbacks.
+     Hugo's .Params accessor is case-insensitive, so camelCase keys in yaml
+     (e.g. termBg) are correctly resolved even though Hugo stores them lowercase. */}}
+{{ $cd := .Site.Params.colors.dark }}
+{{ $cl := .Site.Params.colors.light }}
+
+<style>
+  :root {
+    --term-bg: {{ $cd.termBg | default "#1d2021" | safeCSS }};
+    --term-chrome-bg: {{ $cd.termChromeBg | default "#282828" | safeCSS }};
+    --page-bg: {{ $cd.pageBg | default "#0a0e1a" | safeCSS }};
+    --term-border: {{ $cd.termBorder | default "#7daea3" | safeCSS }};
+    --term-border-glow: {{ $cd.termBorderGlow | default "rgba(30, 100, 200, 0.5)" | safeCSS }};
+    --term-text: {{ $cd.termText | default "#ebdbb2" | safeCSS }};
+    --term-text-dim: {{ $cd.termTextDim | default "#928374" | safeCSS }};
+    --term-prompt: {{ $cd.termPrompt | default "#b8bb26" | safeCSS }};
+    --term-command: {{ $cd.termCommand | default "#83a598" | safeCSS }};
+    --term-heading: {{ $cd.termHeading | default "#fabd2f" | safeCSS }};
+    --term-link: {{ $cd.termLink | default "#83a598" | safeCSS }};
+    --term-link-hover: {{ $cd.termLinkHover | default "#8ec07c" | safeCSS }};
+    --term-error: {{ $cd.termError | default "#fb4934" | safeCSS }};
+    --term-success: {{ $cd.termSuccess | default "#b8bb26" | safeCSS }};
+    --radio-red: {{ $cd.radioRed | default "#ff5f56" | safeCSS }};
+    --radio-yellow: {{ $cd.radioYellow | default "#ffbd2e" | safeCSS }};
+    --radio-green: {{ $cd.radioGreen | default "#27c93f" | safeCSS }};
+
+    {{/* Background image overrides */}}
+    {{ with .Site.Params.background }}
+      {{ with .image      }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{ with .size        }}--page-bg-size: {{ . }};{{ end }}
+      {{ with .position    }}--page-bg-position: {{ . }};{{ end }}
+      {{ with .attachment  }}--page-bg-attachment: {{ . }};{{ end }}
+      {{ with .overlayColor }}--page-bg-overlay: {{ . | safeCSS }};{{ end }}
+      {{ if .image }}--page-bg-overlay-display: block;{{ end }}
+    {{ end }}
+
+    {{/* Dark-mode specific background (overrides shared) */}}
+    {{ with .Site.Params.background }}
+      {{ with .darkImage }}--page-bg-image: url('{{ . }}');{{ end }}
+    {{ end }}
+  }
+
+  [data-theme="light"] {
+    --term-bg: {{ $cl.termBg | default "#fbf1c7" | safeCSS }};
+    --term-chrome-bg: {{ $cl.termChromeBg | default "#d5c4a1" | safeCSS }};
+    --page-bg: {{ $cl.pageBg | default "#504945" | safeCSS }};
+    --term-border: {{ $cl.termBorder | default "#7daea3" | safeCSS }};
+    --term-border-glow: {{ $cl.termBorderGlow | default "rgba(181, 118, 20, 0.25)" | safeCSS }};
+    --term-text: {{ $cl.termText | default "#3c3836" | safeCSS }};
+    --term-text-dim: {{ $cl.termTextDim | default "#655751" | safeCSS }};
+    --term-prompt: {{ $cl.termPrompt | default "#79740e" | safeCSS }};
+    --term-command: {{ $cl.termCommand | default "#076678" | safeCSS }};
+    --term-heading: {{ $cl.termHeading | default "#b57614" | safeCSS }};
+    --term-link: {{ $cl.termLink | default "#076678" | safeCSS }};
+    --term-link-hover: {{ $cl.termLinkHover | default "#427b58" | safeCSS }};
+    --term-error: {{ $cl.termError | default "#cc241d" | safeCSS }};
+    --term-success: {{ $cl.termSuccess | default "#79740e" | safeCSS }};
+  }
+
+  {{/* Light-mode background image */}}
+  {{ with .Site.Params.background }}
+    {{ if or .lightImage .image }}
+  [data-theme="light"] {
+      {{ with .lightImage }}--page-bg-image-light: url('{{ . }}');{{ end }}
+      {{ if not .lightImage }}{{ with .image }}--page-bg-image-light: url('{{ . }}');{{ end }}{{ end }}
+    --page-bg-overlay-display: block;
+      {{ with .lightOverlayColor }}--page-bg-overlay: {{ . }};{{ end }}
+  }
+    {{ end }}
+  {{ end }}
+</style>

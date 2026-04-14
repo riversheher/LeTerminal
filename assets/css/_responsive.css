@@ -1,0 +1,108 @@
+/* ==============================================
+   Responsive Breakpoints
+   ============================================== */
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .terminal-window {
+    margin: 16px;
+    max-width: calc(100% - 32px);
+    height: calc(100vh - 32px);
+  }
+
+  .terminal-body {
+    padding: 16px 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --term-font-size: 12px;
+  }
+
+  .desktop {
+    padding: 8px;
+  }
+
+  .terminal-window {
+    margin: 8px;
+    max-width: calc(100% - 16px);
+    height: calc(100vh - 16px);
+  }
+
+  .terminal-body {
+    padding: 12px 14px;
+  }
+
+  .terminal-chrome {
+    padding: 8px 12px;
+  }
+
+  .terminal-chrome__button {
+    width: 10px;
+    height: 10px;
+  }
+
+  .terminal-chrome__title {
+    font-size: 12px;
+  }
+
+  .terminal-chrome__mode-toggle,
+  .terminal-chrome__theme-toggle {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .terminal-chrome__controls {
+    gap: 4px;
+  }
+
+  .terminal-chrome__btn-label {
+    display: none;
+  }
+
+  .terminal-chrome__title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-card__avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .command-bar__links {
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* Collapse two-column layouts */
+  .terminal-table {
+    flex-direction: column;
+  }
+
+  .terminal-table__col {
+    width: 100%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-body {
+    scroll-behavior: auto;
+  }
+
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
