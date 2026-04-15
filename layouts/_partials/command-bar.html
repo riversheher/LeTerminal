@@ -1,4 +1,4 @@
-{{/* Command bar — prompt and clickable command links */}}
+{{/* Command bar — prompt and clickable command links (click mode) */}}
 <div class="command-bar" id="command-bar">
   <p class="command-bar__prompt">$ Click a command:</p>
   <div class="command-bar__links">
@@ -8,14 +8,38 @@
        hx-target="#dynamic-content"
        hx-swap="beforeend"
        hx-push-url="false"
-       class="terminal-command">
+       class="terminal-command"
+       data-cmd-name="{{ .name }}"
+       data-cmd-description="{{ .description | default "" }}"
+       data-cmd-fragment="/{{ .name }}/fragment.html">
       {{ .label }}
     </a>
     {{ end }}
     <a href="#"
        onclick="clearTerminal(); return false;"
-       class="terminal-command">
+       class="terminal-command"
+       data-cmd-name="clear"
+       data-cmd-description="Clear terminal output">
       clear
     </a>
   </div>
+</div>
+
+{{/* Keyboard input bar (keyboard mode) */}}
+<div class="keyboard-bar" id="keyboard-bar">
+  <div class="keyboard-bar__input-line">
+    <span class="keyboard-bar__prompt">$</span>
+    <div class="keyboard-bar__input-wrapper">
+      <input type="text"
+             id="keyboard-input"
+             class="keyboard-bar__input"
+             autocomplete="off"
+             autocapitalize="off"
+             spellcheck="false"
+             aria-label="Terminal command input"
+             placeholder="Type a command...">
+      <div class="keyboard-suggestions" id="keyboard-suggestions"></div>
+    </div>
+  </div>
+  <p class="keyboard-bar__hint text-dim">Tab to complete · ↑↓ history · Enter to run</p>
 </div>

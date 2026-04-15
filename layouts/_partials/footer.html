@@ -1,6 +1,10 @@
 {{/* Footer — Scripts */}}
 {{ $htmx := resources.Get "js/htmx.min.js" }}
+{{ $cmdRegistry := resources.Get "js/command-registry.js" }}
+{{ $keyboard := resources.Get "js/keyboard.js" }}
 {{ $terminal := resources.Get "js/terminal.js" }}
 
 <script src="{{ $htmx.RelPermalink }}"></script>
+<script src="{{ $cmdRegistry.RelPermalink }}"></script>
+<script src="{{ $keyboard.RelPermalink }}"></script>
 <script src="{{ $terminal.RelPermalink }}"></script>

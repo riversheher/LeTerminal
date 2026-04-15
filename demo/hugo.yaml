@@ -16,14 +16,19 @@ params:
   commands:
     - name: "help"
       label: "help"
+      description: "Show available commands"
     - name: "about"
       label: "about"
+      description: "Learn more about me"
     - name: "projects"
       label: "projects"
+      description: "View my projects"
     - name: "skills"
       label: "skills"
+      description: "See my technical skills"
     - name: "contact"
       label: "contact"
+      description: "Get in touch"
 
   # Colour overrides — override individual dark/light mode colours.
   # Omit entirely to use theme defaults. See theme hugo.yaml for all keys.
