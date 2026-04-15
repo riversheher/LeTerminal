@@ -24,3 +24,115 @@ A balance between the terminal system model, and features for user experience an
 
 # Dependencies
 - HTMX 2.0.8
+
+---
+
+# Content Authoring Guide
+
+## Site Configuration
+
+In your site's `hugo.yaml`:
+
+```yaml
+baseURL: "https://yoursite.com/"
+title: "Portfolio Terminal"
+theme: "TerminalHugo"
+
+params:
+  # -- Terminal chrome --------------------------------------------------------
+  terminalTitle: "user@host:~"        # Text shown in the terminal title bar
+
+  # -- Profile card (displayed on homepage) -----------------------------------
+  siteName: "Portfolio Terminal"       # Welcome banner name
+  siteVersion: "v1.0.0"               # Version shown beside site name
+  profileName: "Your Name"            # Large heading in profile card
+  profileSubtitle: "Your Tagline"     # Subtitle under your name
+  profileBio: "A short bio."          # Paragraph below the subtitle
+  profileInitials: "YN"               # Fallback avatar when no image is set
+  # profileImage: "/images/profile.jpg" # Uncomment to use an image avatar
+
+  # -- Commands (each entry becomes a clickable/typeable command) -------------
+  commands:
+    - name: "help"                    # URL slug (must match content filename)
+      label: "help"                   # Display text in command bar
+      description: "Show help"        # Tooltip / help text
+    - name: "about"
+      label: "about"
+      description: "Learn more about me"
+
+  # -- Colour overrides (optional) --------------------------------------------
+  # Override individual theme colours per mode. See theme hugo.yaml for all keys.
+  # colors:
+  #   dark:
+  #     termBg: "#1d2021"
+  #     termText: "#ebdbb2"
+  #   light:
+  #     termBg: "#fbf1c7"
+  #     termText: "#3c3836"
+
+  # -- Background image (optional) --------------------------------------------
+  # background:
+  #   image: "/images/bg.jpg"           # Shared fallback
+  #   darkImage: "/images/bg-dark.jpg"  # Dark-mode only
+  #   lightImage: "/images/bg-light.jpg"
+
+```
+
+## Adding a Page
+
+1. Create a Markdown file in `content/` — the filename becomes the command/slug:
+
+```
+content/
+  _index.md      # Homepage (title only, body not rendered)
+  help.md        # /help
+  about.md       # /about
+  projects.md    # /projects
+```
+
+2. Add front matter. Only `title` is required:
+
+```yaml
+---
+title: "about"          # Displayed as the echoed command  ($ about)
+author: "Your Name"     # Optional — shown in content footer
+created: 2026-01-10     # Optional — creation date in footer
+updated: 2026-04-15     # Optional — last-updated date in footer
+---
+```
+
+3. Register the page as a command in `hugo.yaml` → `params.commands` so it appears in the command bar and is reachable by typing.
+
+4. Write content using standard Markdown — headings, lists, tables, bold/italic all work.
+
+## Shortcodes
+
+Use these inside your Markdown files for terminal-styled elements.
+
+### Colored Text
+```markdown
+{{</* colored-text color="#b8bb26" */>}}Green text{{</* /colored-text */>}}
+```
+
+### Terminal Link
+```markdown
+{{</* terminal-link url="https://github.com" */>}}GitHub{{</* /terminal-link */>}}
+```
+
+### Terminal Image
+```markdown
+{{</* terminal-image src="/images/demo.png" alt="Demo" */>}}
+
+<!-- Optional parameters: -->
+{{</* terminal-image src="/images/demo.png" alt="Demo" caption="A caption" scanline="true" maxWidth="400px" */>}}
+```
+
+### Terminal Table
+Pipe-separated two-column layout:
+```markdown
+{{</* terminal-table */>}}
+**Frontend:** | **Backend:**
+React, TypeScript | Node.js, Python
+Next.js, Vue.js | Go, Gin
+{{</* /terminal-table */>}}
+```
