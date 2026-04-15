@@ -1,5 +1,8 @@
 ---
 title: "about"
+author: "John Developer"
+updated: 2026-04-15
+created: 2026-01-10
 ---
 
 ## 👋 About Me
@@ -21,6 +24,5 @@ I'm a **Full Stack Developer** with a passion for building clean, performant, an
 - Built and maintained **15+** production applications
 - {{< colored-text color="#b8bb26" >}}Currently open to new opportunities{{< /colored-text >}}
 
----browserBackend.callTool: Target page, context or browser has been closed
 
 {{< colored-text color="#928374" >}}Last updated: April 2026{{< /colored-text >}}

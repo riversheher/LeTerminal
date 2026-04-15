@@ -1,5 +1,7 @@
 ---
 title: "projects"
+author: "John Developer"
+updated: 2026-04-12
 ---
 
 ## 🚀 Projects
@@ -37,6 +39,12 @@ CLI tool for automating development workflows.
 - **Stack:** Python, Click, Docker SDK
 - **Features:** Project scaffolding, CI/CD templates, environment management
 - {{< terminal-link url="https://github.com/example/devops-toolkit" >}}View on GitHub →{{< /terminal-link >}}
+
+---
+
+### {{< colored-text color="#fabd2f" >}}Demo Screenshot{{< /colored-text >}}
+
+{{< terminal-image src="https://picsum.photos/600/300" alt="Random demo image" caption="A sample image rendered with terminal styling" >}}
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "contact"
+created: 2026-03-01
 ---
 
 ## 📬 Get In Touch
