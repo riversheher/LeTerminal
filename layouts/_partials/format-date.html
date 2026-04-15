@@ -1,0 +1,17 @@
+{{- /* format-date — Formats a date to "April 25th 2025" style */ -}}
+{{- /* Input: a Hugo date value (time.Time or string parseable by time) */ -}}
+{{- $d := time.AsTime . -}}
+{{- $month := $d.Format "January" -}}
+{{- $day := $d.Day -}}
+{{- $year := $d.Format "2006" -}}
+{{- $suffix := "th" -}}
+{{- $mod10 := mod $day 10 -}}
+{{- $mod100 := mod $day 100 -}}
+{{- if and (eq $mod10 1) (ne $mod100 11) -}}
+  {{- $suffix = "st" -}}
+{{- else if and (eq $mod10 2) (ne $mod100 12) -}}
+  {{- $suffix = "nd" -}}
+{{- else if and (eq $mod10 3) (ne $mod100 13) -}}
+  {{- $suffix = "rd" -}}
+{{- end -}}
+{{- printf "%s %d%s %s" $month $day $suffix $year -}}

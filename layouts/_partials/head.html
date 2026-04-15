@@ -61,6 +61,9 @@
     --radio-yellow: {{ $cd.radioYellow | default "#ffbd2e" | safeCSS }};
     --radio-green: {{ $cd.radioGreen | default "#27c93f" | safeCSS }};
 
+    {{/* Content metadata colour override */}}
+    {{ with $cd.termMeta }}--term-meta: {{ . | safeCSS }};{{ end }}
+
     {{/* Background image overrides */}}
     {{ with .Site.Params.background }}
       {{ with .image      }}--page-bg-image: url('{{ . }}');{{ end }}
@@ -92,6 +95,7 @@
     --term-link-hover: {{ $cl.termLinkHover | default "#427b58" | safeCSS }};
     --term-error: {{ $cl.termError | default "#cc241d" | safeCSS }};
     --term-success: {{ $cl.termSuccess | default "#79740e" | safeCSS }};
+    {{ with $cl.termMeta }}--term-meta: {{ . | safeCSS }};{{ end }}
   }
 
   {{/* Light-mode background image */}}

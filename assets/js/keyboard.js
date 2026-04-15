@@ -293,6 +293,7 @@ var TerminalKeyboard = (function() {
    */
   function _showSuggestions(matches, activeIndex) {
     var container = document.getElementById('keyboard-suggestions');
+    var input = document.getElementById('keyboard-input');
     if (!container) return;
 
     var html = '';
@@ -301,7 +302,8 @@ var TerminalKeyboard = (function() {
       if (i === activeIndex) cls += ' keyboard-suggestion--active';
       var cmd = TerminalCommands.get(matches[i]);
       var desc = cmd ? cmd.description : '';
-      html += '<div class="' + cls + '" data-command="' + matches[i] + '">';
+      var optionId = 'suggestion-' + i;
+      html += '<div class="' + cls + '" data-command="' + matches[i] + '" role="option" id="' + optionId + '"' + (i === activeIndex ? ' aria-selected="true"' : ' aria-selected="false"') + '>';
       html += '<span class="keyboard-suggestion__name">' + matches[i] + '</span>';
       if (desc) {
         html += '<span class="keyboard-suggestion__desc"> — ' + _escapeHtml(desc) + '</span>';
@@ -310,7 +312,18 @@ var TerminalKeyboard = (function() {
     }
 
     container.innerHTML = html;
-    container.style.display = matches.length > 0 ? 'block' : 'none';
+    var isVisible = matches.length > 0;
+    container.style.display = isVisible ? 'block' : 'none';
+
+    // Update ARIA state on input
+    if (input) {
+      input.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+      if (isVisible && activeIndex >= 0) {
+        input.setAttribute('aria-activedescendant', 'suggestion-' + activeIndex);
+      } else {
+        input.removeAttribute('aria-activedescendant');
+      }
+    }
 
     // Add click handlers to suggestions
     var items = container.querySelectorAll('.keyboard-suggestion');
@@ -340,9 +353,14 @@ var TerminalKeyboard = (function() {
    */
   function _hideSuggestions() {
     var container = document.getElementById('keyboard-suggestions');
+    var input = document.getElementById('keyboard-input');
     if (container) {
       container.innerHTML = '';
       container.style.display = 'none';
+    }
+    if (input) {
+      input.setAttribute('aria-expanded', 'false');
+      input.removeAttribute('aria-activedescendant');
     }
   }
 

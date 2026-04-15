@@ -37,8 +37,11 @@
              autocapitalize="off"
              spellcheck="false"
              aria-label="Terminal command input"
+             aria-autocomplete="list"
+             aria-controls="keyboard-suggestions"
+             aria-expanded="false"
              placeholder="Type a command...">
-      <div class="keyboard-suggestions" id="keyboard-suggestions"></div>
+      <div class="keyboard-suggestions" id="keyboard-suggestions" role="listbox" aria-label="Command suggestions"></div>
     </div>
   </div>
   <p class="keyboard-bar__hint text-dim">Tab to complete · ↑↓ history · Enter to run</p>

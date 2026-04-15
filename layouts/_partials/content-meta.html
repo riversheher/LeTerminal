@@ -1,0 +1,34 @@
+{{/* content-meta — Renders author, updated, created metadata at the bottom of content */}}
+{{/* Reads from front matter: author, updated, created */}}
+{{/* Colour can be overridden via params.colors.dark.termMeta / params.colors.light.termMeta */}}
+{{- $author := .Params.author -}}
+{{- $updated := .Params.updated -}}
+{{- $created := .Params.created -}}
+{{- if or $author $updated $created }}
+<div class="content-meta">
+  {{- with $author }}
+  <div class="content-meta__row">
+    <span class="content-meta__label">Author &nbsp;</span>
+    <span class="content-meta__sep">&middot;</span>
+    <span class="content-meta__value">{{ . }}</span>
+  </div>
+  {{- end }}
+  {{- if or $updated $created }}
+  <div class="content-meta__row">
+    {{- with $updated }}
+    <span class="content-meta__label">Updated</span>
+    <span class="content-meta__sep">&middot;</span>
+    <span class="content-meta__value">{{- partial "format-date.html" . -}}</span>
+    {{- end }}
+    {{- if and $updated $created }}
+    <span class="content-meta__divider">|</span>
+    {{- end }}
+    {{- with $created }}
+    <span class="content-meta__label">Created</span>
+    <span class="content-meta__sep">&middot;</span>
+    <span class="content-meta__value">{{- partial "format-date.html" . -}}</span>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}

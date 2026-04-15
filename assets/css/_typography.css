@@ -153,10 +153,185 @@ body {
 }
 
 /* Light mode code block adjustments */
+/* ==============================================
+   Terminal Image Shortcode
+   ============================================== */
+.terminal-image {
+  margin: 1em 0;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.terminal-image__frame {
+  border: 1px solid var(--term-border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  line-height: 0;
+}
+
+.terminal-image__frame:hover {
+  border-color: var(--term-link-hover);
+  box-shadow: 0 0 8px var(--term-border-glow);
+}
+
+.terminal-image__frame:focus-visible {
+  outline: 2px solid var(--term-link);
+  outline-offset: 2px;
+}
+
+.terminal-image__frame img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.terminal-image__caption {
+  color: var(--term-text-dim);
+  font-family: var(--term-font);
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 2px;
+  font-style: normal;
+}
+
+/* Scanline / pixel filter effect */
+.terminal-image--scanline .terminal-image__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+}
+
+.terminal-image--scanline .terminal-image__frame {
+  position: relative;
+}
+
+/* ==============================================
+   Image Lightbox
+   ============================================== */
+.terminal-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.terminal-lightbox--active {
+  opacity: 1;
+}
+
+.terminal-lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 2px solid var(--term-border);
+  border-radius: 6px;
+  box-shadow: 0 0 30px var(--term-border-glow);
+  cursor: default;
+}
+
+.terminal-lightbox__caption {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--term-text-dim);
+  font-family: var(--term-font);
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 16px;
+  border-radius: 4px;
+  max-width: 80vw;
+  text-align: center;
+}
+
+.terminal-lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  color: var(--term-text-dim);
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--term-font);
+  padding: 4px 8px;
+  transition: color 0.15s;
+}
+
+.terminal-lightbox__close:hover {
+  color: var(--term-text);
+}
+
+/* ==============================================
+   Content Metadata
+   ============================================== */
+.content-meta {
+  margin-top: 1.5em;
+  padding-top: 0.75em;
+  border-top: 1px dashed var(--term-text-dim);
+  opacity: 0.8;
+  font-family: var(--term-font);
+  font-size: 13px;
+  color: var(--term-meta, var(--term-text-dim));
+}
+
+.content-meta__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.content-meta__label {
+  display: inline-block;
+  width: 7ch;
+  color: var(--term-meta, var(--term-text-dim));
+}
+
+.content-meta__sep {
+  display: inline-block;
+  margin: 0 0.75ch;
+  color: var(--term-meta, var(--term-text-dim));
+}
+
+.content-meta__value {
+  color: var(--term-meta, var(--term-text-dim));
+}
+
+.content-meta__divider {
+  margin: 0 1ch;
+  color: var(--term-meta, var(--term-text-dim));
+  opacity: 0.6;
+}
+
+/* Light mode adjustments */
 [data-theme="light"] .output-body code {
   background: rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="light"] .output-body pre {
   background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .terminal-lightbox {
+  background: rgba(0, 0, 0, 0.75);
 }

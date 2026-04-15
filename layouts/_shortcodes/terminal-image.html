@@ -1,0 +1,21 @@
+{{/* terminal-image shortcode — displays images with terminal aesthetic */}}
+{{/* Usage:
+  {{< terminal-image src="/images/screenshot.png" alt="Screenshot of the app" >}}
+  {{< terminal-image src="https://example.com/photo.jpg" alt="Photo" caption="My photo" >}}
+  {{< terminal-image src="/images/demo.png" alt="Demo" scanline="true" >}}
+  {{< terminal-image src="/images/demo.png" alt="Demo" maxWidth="400px" >}}
+*/}}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $caption := .Get "caption" | default $alt }}
+{{ $scanline := .Get "scanline" | default "false" }}
+{{ $maxWidth := .Get "maxWidth" | default "" }}
+
+<figure class="terminal-image{{ if eq $scanline "true" }} terminal-image--scanline{{ end }}"{{ with $maxWidth }} style="max-width: {{ . }};"{{ end }}>
+  <div class="terminal-image__frame" role="button" tabindex="0" aria-label="Click to enlarge image: {{ $alt }}">
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+  </div>
+  {{ with $caption }}
+  <figcaption class="terminal-image__caption">{{ . }}</figcaption>
+  {{ end }}
+</figure>
