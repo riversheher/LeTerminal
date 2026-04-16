@@ -35,7 +35,7 @@ A balance between the terminal system model, and features for user experience an
 Install Hugo **extended** edition v0.146.0 or later — [gohugo.io/installation](https://gohugo.io/installation/).
 
 ```bash
-hugo version   # verify: must be v0.146.0+
+hugo version 
 ```
 
 ## 2. Create a New Site
