@@ -48,13 +48,13 @@ hugo new site my-site && cd my-site
 
 ```bash
 git init
-git submodule add https://github.com/your-org/TerminalHugo.git themes/TerminalHugo
+git submodule add https://github.com/riversheher/LeTerminal.git themes/LeTerminal
 ```
 
 To update the theme later:
 
 ```bash
-git submodule update --remote themes/TerminalHugo
+git submodule update --remote themes/LeTerminal
 ```
 
 ## 4. Configure Your Site
@@ -64,7 +64,7 @@ Set `theme` in `hugo.yaml` and add the required `outputs` block:
 ```yaml
 baseURL: "https://yoursite.com/"
 title: "My Terminal"
-theme: "TerminalHugo"             # Must match the themes/ folder name
+theme: "LeTerminal"             # Must match the themes/ folder name
 
 # Required — enables HTMX fragment rendering
 outputs:
@@ -93,7 +93,7 @@ In your site's `hugo.yaml`:
 ```yaml
 baseURL: "https://yoursite.com/"
 title: "Portfolio Terminal"
-theme: "TerminalHugo"
+theme: "LeTerminal"
 
 params:
   # -- Terminal chrome --------------------------------------------------------

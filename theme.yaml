@@ -1,4 +1,4 @@
-name: "Le Terminal"
+name: "LeTerminal"
 description: >
   A basic single page theme for Hugo, designed based on the terminal concept.
   Preserves much of the original terminal style, with autoscrolling text, and a blinking cursor.
