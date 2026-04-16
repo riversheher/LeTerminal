@@ -23,7 +23,64 @@ A balance between the terminal system model, and features for user experience an
 - Homepage content persists after terminal clear command.
 
 # Dependencies
-- HTMX 2.0.8
+- Hugo **v0.146.0+** (extended edition)
+- HTMX 2.0.8 (bundled with theme)
+
+---
+
+# Installation
+
+## 1. Install Hugo
+
+Install Hugo **extended** edition v0.146.0 or later — [gohugo.io/installation](https://gohugo.io/installation/).
+
+```bash
+hugo version   # verify: must be v0.146.0+
+```
+
+## 2. Create a New Site
+
+```bash
+hugo new site my-site && cd my-site
+```
+
+## 3. Add the Theme as a Git Submodule
+
+```bash
+git init
+git submodule add https://github.com/your-org/TerminalHugo.git themes/TerminalHugo
+```
+
+To update the theme later:
+
+```bash
+git submodule update --remote themes/TerminalHugo
+```
+
+## 4. Configure Your Site
+
+Set `theme` in `hugo.yaml` and add the required `outputs` block:
+
+```yaml
+baseURL: "https://yoursite.com/"
+title: "My Terminal"
+theme: "TerminalHugo"             # Must match the themes/ folder name
+
+# Required — enables HTMX fragment rendering
+outputs:
+  home:
+    - HTML
+  page:
+    - HTML
+    - fragment
+```
+
+# Start the dev server
+hugo server -D
+
+Open [http://localhost:1313](http://localhost:1313).
+
+See the full configuration reference in the Content Authoring Guide below.
 
 ---
 
