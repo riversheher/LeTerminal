@@ -48,3 +48,9 @@ params:
       termLinkHover: "#427b58"
       termError: "#cc241d"
       termSuccess: "#79740e"
+
+  # Attribution line below terminal window
+  attribution:
+    enabled: true
+    text: "Made with Le Terminal"
+    url: "https://github.com/riversheher/LeTerminal"

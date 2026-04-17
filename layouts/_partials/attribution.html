@@ -1,0 +1,13 @@
+{{/* Attribution line — displayed below the terminal window.
+     Controlled by params.attribution in hugo.yaml.
+     Set params.attribution.enabled to false to hide. */}}
+{{ $attr := .Site.Params.attribution }}
+{{ if and $attr (ne $attr.enabled false) }}
+<div class="attribution">
+  {{ with $attr.url }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $attr.text | default "Made with Le Terminal" }}</a>
+  {{ else }}
+    <span>{{ $attr.text | default "Made with Le Terminal" }}</span>
+  {{ end }}
+</div>
+{{ end }}
