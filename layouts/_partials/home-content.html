@@ -2,7 +2,12 @@
 <div class="profile-card">
   <div class="profile-card__avatar {{ if not .Site.Params.profileImage }}profile-card__avatar--initials{{ end }}">
     {{ if .Site.Params.profileImage }}
-      <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+      {{- $img := resources.Get .Site.Params.profileImage -}}
+      {{ if $img }}
+        <img src="{{ $img.RelPermalink }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+      {{ else }}
+        <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+      {{ end }}
     {{ else }}
       {{ .Site.Params.profileInitials | default "?" }}
     {{ end }}

@@ -11,7 +11,7 @@ params:
   profileSubtitle: "Full Stack Developer | Problem Solver | Tech Enthusiast"
   profileBio: "Building elegant solutions for complex challenges. Passionate about clean code, user experience, and continuous learning."
   profileInitials: "JD"
-  # profileImage: "/images/profile.jpg"
+  profileImage: "images/okabe-profile.jpg"
 
   commands:
     - name: "help"
