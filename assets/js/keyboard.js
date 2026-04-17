@@ -1,5 +1,5 @@
 /* ==============================================
-   Keyboard Mode — Terminal Input Handler
+   Keyboard Mode - Terminal Input Handler
    ==============================================
    Handles:
    - Mode toggling (click ↔ keyboard)
@@ -213,7 +213,7 @@ var TerminalKeyboard = (function() {
         html += '<li><span class="text-command">' + suggestions[i].name + '</span>';
         var desc = TerminalCommands.get(suggestions[i].name);
         if (desc && desc.description) {
-          html += ' — ' + _escapeHtml(desc.description);
+          html += ' - ' + _escapeHtml(desc.description);
         }
         html += '</li>';
       }
@@ -253,7 +253,7 @@ var TerminalKeyboard = (function() {
       _tabState.index = -1;
 
       if (_tabState.matches.length === 0) {
-        // No prefix matches — try fuzzy
+        // No prefix matches - try fuzzy
         var fuzzy = TerminalCommands.fuzzyMatch(value);
         if (fuzzy.length > 0) {
           _tabState.matches = fuzzy.map(function(r) { return r.name; });
@@ -264,14 +264,14 @@ var TerminalKeyboard = (function() {
     }
 
     if (_tabState.matches.length === 1) {
-      // Single match — complete it
+      // Single match - complete it
       input.value = _tabState.matches[0];
       _tabState.partial = input.value;
       _hideSuggestions();
       return;
     }
 
-    // Multiple matches — cycle through them
+    // Multiple matches - cycle through them
     if (shiftKey) {
       _tabState.index--;
       if (_tabState.index < 0) _tabState.index = _tabState.matches.length - 1;
@@ -306,7 +306,7 @@ var TerminalKeyboard = (function() {
       html += '<div class="' + cls + '" data-command="' + matches[i] + '" role="option" id="' + optionId + '"' + (i === activeIndex ? ' aria-selected="true"' : ' aria-selected="false"') + '>';
       html += '<span class="keyboard-suggestion__name">' + matches[i] + '</span>';
       if (desc) {
-        html += '<span class="keyboard-suggestion__desc"> — ' + _escapeHtml(desc) + '</span>';
+        html += '<span class="keyboard-suggestion__desc"> - ' + _escapeHtml(desc) + '</span>';
       }
       html += '</div>';
     }

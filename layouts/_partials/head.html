@@ -1,4 +1,4 @@
-{{/* Theme preference — prevent flash of wrong theme */}}
+{{/* Theme preference - prevent flash of wrong theme */}}
 <script>
   (function() {
     var t = localStorage.getItem('theme');
@@ -14,7 +14,7 @@
 <title>{{ .Site.Title | default "Le Terminal" }}</title>
 <meta name="description" content="{{ .Site.Params.profileBio | default "" }}">
 
-{{/* Google Fonts — JetBrains Mono */}}
+{{/* Google Fonts - JetBrains Mono */}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
 
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 
-{{/* Colour palette — emitted from hugo.yaml with template-level fallbacks.
+{{/* Colour palette - emitted from hugo.yaml with template-level fallbacks.
      Hugo's .Params accessor is case-insensitive, so camelCase keys in yaml
      (e.g. termBg) are correctly resolved even though Hugo stores them lowercase. */}}
 {{ $cd := .Site.Params.colors.dark }}
@@ -66,17 +66,15 @@
 
     {{/* Background image overrides */}}
     {{ with .Site.Params.background }}
-      {{ with .image      }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{/* Determine which image to use: darkImage > image */}}
+      {{ $bgImg := .image }}
+      {{ with .darkImage }}{{ $bgImg = . }}{{ end }}
+      {{ with $bgImg }}--page-bg-image: url('{{ . }}');{{ end }}
       {{ with .size        }}--page-bg-size: {{ . }};{{ end }}
       {{ with .position    }}--page-bg-position: {{ . }};{{ end }}
       {{ with .attachment  }}--page-bg-attachment: {{ . }};{{ end }}
       {{ with .overlayColor }}--page-bg-overlay: {{ . | safeCSS }};{{ end }}
-      {{ if .image }}--page-bg-overlay-display: block;{{ end }}
-    {{ end }}
-
-    {{/* Dark-mode specific background (overrides shared) */}}
-    {{ with .Site.Params.background }}
-      {{ with .darkImage }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{ if or $bgImg .lightImage }}--page-bg-overlay-display: block;{{ end }}
     {{ end }}
   }
 
@@ -96,17 +94,13 @@
     --term-error: {{ $cl.termError | default "#cc241d" | safeCSS }};
     --term-success: {{ $cl.termSuccess | default "#79740e" | safeCSS }};
     {{ with $cl.termMeta }}--term-meta: {{ . | safeCSS }};{{ end }}
-  }
 
-  {{/* Light-mode background image */}}
-  {{ with .Site.Params.background }}
-    {{ if or .lightImage .image }}
-  [data-theme="light"] {
-      {{ with .lightImage }}--page-bg-image-light: url('{{ . }}');{{ end }}
-      {{ if not .lightImage }}{{ with .image }}--page-bg-image-light: url('{{ . }}');{{ end }}{{ end }}
-    --page-bg-overlay-display: block;
-      {{ with .lightOverlayColor }}--page-bg-overlay: {{ . }};{{ end }}
-  }
+    {{/* Light-mode background image: lightImage > image > (CSS default gradient) */}}
+    {{ with .Site.Params.background }}
+      {{ $lightBg := .image }}
+      {{ with .lightImage }}{{ $lightBg = . }}{{ end }}
+      {{ with $lightBg }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{ with .lightOverlayColor }}--page-bg-overlay: {{ . | safeCSS }};{{ end }}
     {{ end }}
-  {{ end }}
+  }
 </style>

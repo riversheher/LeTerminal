@@ -32,7 +32,7 @@ A balance between the terminal system model, and features for user experience an
 
 ## 1. Install Hugo
 
-Install Hugo **extended** edition v0.146.0 or later — [gohugo.io/installation](https://gohugo.io/installation/).
+Install Hugo **extended** edition v0.146.0 or later: [gohugo.io/installation](https://gohugo.io/installation/).
 
 ```bash
 hugo version 
@@ -66,7 +66,7 @@ baseURL: "https://yoursite.com/"
 title: "My Terminal"
 theme: "LeTerminal"             # Must match the themes/ folder name
 
-# Required — enables HTMX fragment rendering
+# Required
 outputs:
   home:
     - HTML
@@ -137,7 +137,7 @@ params:
 
 ## Adding a Page
 
-1. Create a Markdown file in `content/` — the filename becomes the command/slug:
+1. Create a Markdown file in `content/`, the filename becomes the command/slug:
 
 ```
 content/
@@ -152,15 +152,15 @@ content/
 ```yaml
 ---
 title: "about"          # Displayed as the echoed command  ($ about)
-author: "Your Name"     # Optional — shown in content footer
-created: 2026-01-10     # Optional — creation date in footer
-updated: 2026-04-15     # Optional — last-updated date in footer
+author: "Your Name"     # Optional
+created: 2026-01-10     # Optional
+updated: 2026-04-15     # Optional 
 ---
 ```
 
 3. Register the page as a command in `hugo.yaml` → `params.commands` so it appears in the command bar and is reachable by typing.
 
-4. Write content using standard Markdown — headings, lists, tables, bold/italic all work.
+4. Write content using standard Markdown: headings, lists, tables, bold/italic all work.
 
 ## Shortcodes
 

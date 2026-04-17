@@ -1,5 +1,5 @@
 /* ==============================================
-   Terminal Body — Output Area, Scrolling, Cursor
+   Terminal Body - Output Area, Scrolling, Cursor
    ============================================== */
 .terminal-body {
   background: var(--term-bg);

@@ -30,7 +30,7 @@ params:
       label: "contact"
       description: "Get in touch"
 
-  # Colour overrides — override individual dark/light mode colours.
+  # Colour overrides - override individual dark/light mode colours.
   # Omit entirely to use theme defaults. See theme hugo.yaml for all keys.
   # colors:
   #   dark:
@@ -38,17 +38,12 @@ params:
   #   light:
   #     pageBg: "#504945"
 
-  # background:
-  #   image: "/images/bg.jpg"            # Shared fallback (used if dark/lightImage not set)
-  #   darkImage: "/images/bg-dark.jpg"   # Dark mode only background
-  #   lightImage: "/images/bg-light.jpg" # Light mode only background
-  #   size: "cover"
-  #   position: "center"
-  #   attachment: "fixed"
-  #   overlayColor: "rgba(0,0,0,0.3)"       # Overlay for dark mode
-  #   lightOverlayColor: "rgba(0,0,0,0.15)" # Overlay for light mode
+  background:
+    image: "https://fedoraproject.org/w/uploads/9/98/F44-wallpaper_day_%28small%29.png"
+    darkImage: "https://fedoraproject.org/w/uploads/6/68/F44-wallpaper_night_%28small%29.png"
+    lightImage: "https://fedoraproject.org/w/uploads/9/98/F44-wallpaper_day_%28small%29.png"
 
-# Output configuration — required for HTMX fragment rendering.
+# Output configuration - required for HTMX fragment rendering.
 # The 'fragment' outputFormat is defined by the theme; only 'outputs' is needed here.
 outputs:
   home:

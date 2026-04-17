@@ -1,5 +1,5 @@
 /* ==============================================
-   Command Bar — Prompt & Command Links
+   Command Bar - Prompt & Command Links
    ============================================== */
 .command-bar {
   margin-top: 16px;
@@ -162,10 +162,10 @@
 }
 
 /* ==============================================
-   Mode Switching — Click / Keyboard visibility
+   Mode Switching - Click / Keyboard visibility
    ============================================== */
 
-/* Default: click mode — show command bar, hide keyboard bar */
+/* Default: click mode - show command bar, hide keyboard bar */
 [data-mode="click"] .command-bar,
 body:not([data-mode]) .command-bar {
   display: block;
@@ -176,7 +176,7 @@ body:not([data-mode]) .keyboard-bar {
   display: none;
 }
 
-/* Keyboard mode — hide command bar, show keyboard bar */
+/* Keyboard mode - hide command bar, show keyboard bar */
 [data-mode="keyboard"] .command-bar {
   display: none;
 }

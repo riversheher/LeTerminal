@@ -1,14 +1,16 @@
 /* ==============================================
-   Main — Desktop & Terminal Window Layout
+   Main - Desktop & Terminal Window Layout
    ============================================== */
 
 /* Desktop background */
 .desktop {
   background-color: var(--page-bg);
-  background-image: var(--page-bg-image, radial-gradient(ellipse at 50% 100%, rgba(30, 60, 150, 0.35) 0%, transparent 60%));
+  background-image: var(--page-bg-image);
   background-size: var(--page-bg-size);
   background-position: var(--page-bg-position);
   background-attachment: var(--page-bg-attachment);
+  image-rendering: auto;
+  -webkit-image-rendering: auto;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -40,7 +42,7 @@
   display: var(--page-bg-overlay-display, none);
 }
 
-/* Terminal window — fills remaining space in container */
+/* Terminal window - fills remaining space in container */
 .terminal-window {
   width: 100%;
   flex: 1 1 0;
@@ -86,9 +88,7 @@
 /* ==============================================
    Light Mode Layout Overrides
    ============================================== */
-[data-theme="light"] .desktop {
-  background-image: var(--page-bg-image-light, var(--page-bg-image, none));
-}
+/* Light mode desktop inherits --page-bg-image set in [data-theme="light"] */
 
 [data-theme="light"] .terminal-window {
   box-shadow:

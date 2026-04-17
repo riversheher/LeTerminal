@@ -95,6 +95,13 @@
   }
 }
 
+/* Mobile: fixed background-attachment causes rendering issues on iOS/Android */
+@media (max-width: 767px) {
+  .desktop {
+    background-attachment: scroll;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .terminal-body {

@@ -1,5 +1,5 @@
 /* ==============================================
-   Command Registry — Extensible Command System
+   Command Registry - Extensible Command System
    ==============================================
    Architecture:
    - Commands are registered with a name, description,
@@ -99,7 +99,7 @@ var TerminalCommands = (function() {
     var names = list();
     var matches = [];
 
-    // Exact match — return just that
+    // Exact match - return just that
     if (_commands[input]) {
       return [input];
     }
@@ -246,7 +246,7 @@ var TerminalCommands = (function() {
    Built-in Commands
    ============================================== */
 
-// clear — Clears dynamic content
+// clear - Clears dynamic content
 TerminalCommands.register('clear', {
   description: 'Clear terminal output',
   source: 'builtin',
@@ -260,7 +260,7 @@ TerminalCommands.register('clear', {
   }
 });
 
-// help — Shows available commands (built-in behaviour, overridden if help page exists)
+// help - Shows available commands (built-in behaviour, overridden if help page exists)
 TerminalCommands.register('help', {
   description: 'Show available commands',
   source: 'builtin',

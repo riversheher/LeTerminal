@@ -1,5 +1,5 @@
 /* ==============================================
-   Terminal JS — Autoscroll, Clear, Mode Toggle, Theme, Lightbox
+   Terminal JS - Autoscroll, Clear, Mode Toggle, Theme, Lightbox
    ============================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // HTMX request error handler — shows error message on failed fetches
+  // HTMX request error handler - shows error message on failed fetches
   document.body.addEventListener('htmx:responseError', function(event) {
     if (event.detail.target && event.detail.target.id === 'dynamic-content') {
       var dynamicContent = document.getElementById('dynamic-content');

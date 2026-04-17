@@ -7,7 +7,7 @@ created: 2026-01-10
 
 ## 👋 About Me
 
-I'm a **Full Stack Developer** with a passion for building clean, performant, and accessible web applications. With over 8 years of experience, I've worked across the entire stack — from pixel-perfect frontends to scalable backend systems.
+I'm a **Full Stack Developer** with a passion for building clean, performant, and accessible web applications. With over 8 years of experience, I've worked across the entire stack - from pixel-perfect frontends to scalable backend systems.
 
 ### 🎯 What I Do
 

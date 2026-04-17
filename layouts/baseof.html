@@ -13,17 +13,17 @@
         {{/* Scrollable terminal body */}}
         <div class="terminal-body" id="terminal-body" role="log" aria-live="polite">
 
-          {{/* Persistent home content — never cleared */}}
+          {{/* Persistent home content - never cleared */}}
           <div id="home-content">
             {{ partial "home-content.html" . }}
           </div>
 
-          {{/* Dynamic content area — HTMX target */}}
+          {{/* Dynamic content area - HTMX target */}}
           <div id="dynamic-content">
             {{ block "main" . }}{{ end }}
           </div>
 
-          {{/* Command input bar — always at bottom of content flow */}}
+          {{/* Command input bar - always at bottom of content flow */}}
           {{ partial "command-bar.html" . }}
 
         </div>

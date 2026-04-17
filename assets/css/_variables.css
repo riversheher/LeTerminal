@@ -1,5 +1,5 @@
 /* ==============================================
-   CSS Custom Properties — Le Terminal Theme
+   CSS Custom Properties - Le Terminal Theme
 
    Colour values are injected from hugo.yaml via
    head.html. Only structural (non-colour) defaults
@@ -10,7 +10,7 @@
   --term-border-radius:   12px;
 
   /* Page Background Image (structural defaults) */
-  --page-bg-image:        none;
+  --page-bg-image:        radial-gradient(ellipse at 50% 100%, rgba(30, 60, 150, 0.35) 0%, transparent 60%);
   --page-bg-size:         cover;
   --page-bg-position:     center;
   --page-bg-attachment:   fixed;
@@ -30,6 +30,5 @@
    via head.html from hugo.yaml configuration.
    ============================================== */
 [data-theme="light"] {
-  /* Page Background Image (light-specific structural default) */
-  --page-bg-image-light:  none;
+  --page-bg-image: radial-gradient(ellipse at 50% 100%, rgba(181, 118, 20, 0.15) 0%, transparent 60%);
 }

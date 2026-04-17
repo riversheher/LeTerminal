@@ -16,6 +16,6 @@ I'm always open to discussing new projects, collaborations, or opportunities.
 
 ---
 
-{{< colored-text color="#b8bb26" >}}Feel free to reach out — I'd love to hear from you!{{< /colored-text >}}
+{{< colored-text color="#b8bb26" >}}Feel free to reach out - I'd love to hear from you!{{< /colored-text >}}
 
 {{< colored-text color="#928374" >}}Response time: Usually within 24–48 hours.{{< /colored-text >}}

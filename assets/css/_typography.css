@@ -1,5 +1,5 @@
 /* ==============================================
-   Typography — Monospace Text, Coloured Spans
+   Typography - Monospace Text, Coloured Spans
    ============================================== */
 
 /* Base terminal text */
@@ -106,7 +106,7 @@ body {
   font-weight: 700;
 }
 
-/* Terminal table shortcode — two-column layout */
+/* Terminal table shortcode - two-column layout */
 .terminal-table {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
-# Le Terminal — Theme Configuration Defaults
+# Le Terminal - Theme Configuration Defaults
 # These settings are automatically merged with the site configuration.
+# Override any value in your site's hugo.yaml.
 #
 # outputFormats defines the HTMX fragment format used by the theme.
 # The site must also configure 'outputs' in its own hugo.yaml to enable it.
@@ -11,9 +12,40 @@ outputFormats:
     mediaType: "text/html"
     notAlternative: true
 
-# Default colour palette — override any value in your site's hugo.yaml
-# under params.colors.dark / params.colors.light.
+# Default theme parameters - override any value in your site's hugo.yaml
+# under params.<key>.
 params:
+
+  # ---- Terminal chrome ----
+  terminalTitle: "terminal@user:~"
+
+  # ---- Site identity ----
+  siteName: "Portfolio Terminal"
+  siteVersion: ""
+
+  # ---- Profile card ----
+  profileName: "Developer"
+  profileSubtitle: ""
+  profileBio: ""
+  profileInitials: "?"
+  # profileImage: "images/avatar.jpg"   # Path relative to assets/ or an external URL
+
+  # ---- Commands shown in the command bar ----
+  commands:
+    - name: "help"
+      label: "help"
+      description: "Show available commands"
+
+  # ---- Background image ----
+  # Omit entirely for the default subtle gradient.
+  # background:
+  #   image: ""            # Shared fallback (used when darkImage / lightImage are not set)
+  #   darkImage: ""        # Dark-mode background
+  #   lightImage: ""       # Light-mode background
+
+  # ---- Colour palette ----
+  # Default dark / light colours. Override individual keys in your site
+  # hugo.yaml under params.colors.dark / params.colors.light.
   colors:
     dark:
       termBg: "#1d2021"
@@ -49,7 +81,7 @@ params:
       termError: "#cc241d"
       termSuccess: "#79740e"
 
-  # Attribution line below terminal window
+  # ---- Attribution line below terminal window ----
   attribution:
     enabled: true
     text: "Made with Le Terminal"
