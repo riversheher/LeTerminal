@@ -38,6 +38,8 @@ params:
 
   # ---- Background image ----
   # Omit entirely for the default subtle gradient.
+  # Values can be an external URL (https://…) or a local asset path
+  # relative to your assets/ directory (e.g. "images/bg.png").
   # background:
   #   image: ""            # Shared fallback (used when darkImage / lightImage are not set)
   #   darkImage: ""        # Dark-mode background

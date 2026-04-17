@@ -39,9 +39,9 @@ params:
   #     pageBg: "#504945"
 
   background:
-    image: "https://fedoraproject.org/w/uploads/9/98/F44-wallpaper_day_%28small%29.png"
-    darkImage: "https://fedoraproject.org/w/uploads/6/68/F44-wallpaper_night_%28small%29.png"
-    lightImage: "https://fedoraproject.org/w/uploads/9/98/F44-wallpaper_day_%28small%29.png"
+    image: "images/f42-01-day.png"
+    darkImage: "images/f42-01-night.png"
+    lightImage: "images/f42-01-day.png"
 
 # Output configuration - required for HTMX fragment rendering.
 # The 'fragment' outputFormat is defined by the theme; only 'outputs' is needed here.

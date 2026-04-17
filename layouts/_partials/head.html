@@ -64,12 +64,20 @@
     {{/* Content metadata colour override */}}
     {{ with $cd.termMeta }}--term-meta: {{ . | safeCSS }};{{ end }}
 
-    {{/* Background image overrides */}}
+    {{/* Background image overrides – supports both URLs and local asset paths.
+         URLs (http:// or https://) are used directly.
+         Local paths are resolved through Hugo's asset pipeline via resources.Get. */}}
     {{ with .Site.Params.background }}
       {{/* Determine which image to use: darkImage > image */}}
       {{ $bgImg := .image }}
       {{ with .darkImage }}{{ $bgImg = . }}{{ end }}
-      {{ with $bgImg }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{ if $bgImg }}
+        {{ if or (hasPrefix $bgImg "http://") (hasPrefix $bgImg "https://") }}
+          --page-bg-image: url('{{ $bgImg }}');
+        {{ else }}
+          {{ with resources.Get $bgImg }}--page-bg-image: url('{{ .RelPermalink }}');{{ end }}
+        {{ end }}
+      {{ end }}
       {{ with .size        }}--page-bg-size: {{ . }};{{ end }}
       {{ with .position    }}--page-bg-position: {{ . }};{{ end }}
       {{ with .attachment  }}--page-bg-attachment: {{ . }};{{ end }}
@@ -99,7 +107,13 @@
     {{ with .Site.Params.background }}
       {{ $lightBg := .image }}
       {{ with .lightImage }}{{ $lightBg = . }}{{ end }}
-      {{ with $lightBg }}--page-bg-image: url('{{ . }}');{{ end }}
+      {{ if $lightBg }}
+        {{ if or (hasPrefix $lightBg "http://") (hasPrefix $lightBg "https://") }}
+          --page-bg-image: url('{{ $lightBg }}');
+        {{ else }}
+          {{ with resources.Get $lightBg }}--page-bg-image: url('{{ .RelPermalink }}');{{ end }}
+        {{ end }}
+      {{ end }}
       {{ with .lightOverlayColor }}--page-bg-overlay: {{ . | safeCSS }};{{ end }}
     {{ end }}
   }
