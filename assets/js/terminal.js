@@ -45,6 +45,22 @@ document.addEventListener('DOMContentLoaded', function() {
   if (typeof TerminalKeyboard !== 'undefined') {
     TerminalKeyboard.init();
   }
+
+  // Initialize filesystem state engine
+  if (typeof TerminalFilesystem !== 'undefined') {
+    TerminalFilesystem.init();
+  }
+
+  // Intercept directory link clicks to update filesystem state
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[data-cmd-type="directory"]');
+    if (!link) return;
+    var name = link.getAttribute('data-cmd-name');
+    if (name && typeof TerminalFilesystem !== 'undefined') {
+      e.preventDefault();
+      TerminalFilesystem.cd(name);
+    }
+  });
 });
 
 /**
@@ -78,6 +94,13 @@ function _registerConfigCommands() {
         description: description,
         source: 'config',
         action: function(args, context) {
+          // If this config command corresponds to a directory in the site tree,
+          // navigate via cd() so the filesystem state and command bar update.
+          if (typeof TerminalFilesystem !== 'undefined') {
+            var result = TerminalFilesystem.cd(cmdName);
+            if (result.success) return;
+          }
+          // Otherwise, fall back to fetching the fragment directly.
           if (typeof htmx !== 'undefined') {
             htmx.ajax('GET', cmdFragment, {
               target: '#dynamic-content',

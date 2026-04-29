@@ -1,0 +1,30 @@
+<script type="application/json" id="site-tree">
+{
+  "home": {
+    "title": {{ .Site.Home.Title | jsonify | safeJS }},
+    "path": "/"
+  },
+  "tree": {
+    {{- $first := true -}}
+    {{- range .Site.Home.Sections.ByTitle -}}
+    {{- if not $first }},{{ end }}{{ $first = false -}}
+     {{ path.Base .RelPermalink | jsonify | safeJS }}: {
+      "type": "directory",
+      "title": {{ .Title | jsonify | safeJS }},
+      "path": {{ .RelPermalink | jsonify | safeJS }},
+      "description": {{ .Params.description | default "" | jsonify | safeJS }},
+      "children": { {{- if or .Sections .RegularPages }}{{ partial "site-tree-children.html" . | safeJS }}{{ end -}} }
+    }
+    {{- end -}}
+    {{- range .Site.Home.RegularPages.ByTitle -}}
+    {{- if not $first }},{{ end }}{{ $first = false -}}
+    {{ path.Base .RelPermalink | jsonify | safeJS }}: {
+      "type": "page",
+      "title": {{ .Title | jsonify | safeJS }},
+      "path": {{ .RelPermalink | jsonify | safeJS }},
+      "description": {{ .Params.description | default "" | jsonify | safeJS }}
+    }
+    {{- end -}}
+  }
+}
+</script>

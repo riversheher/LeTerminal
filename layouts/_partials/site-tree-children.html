@@ -1,0 +1,20 @@
+{{- $childFirst := true -}}
+{{- range .Sections.ByTitle -}}
+{{- if not $childFirst }},{{ end }}{{ $childFirst = false -}}
+{{ path.Base .RelPermalink | jsonify | safeHTML }}: {
+      "type": "directory",
+      "title": {{ .Title | jsonify | safeHTML }},
+      "path": {{ .RelPermalink | jsonify | safeHTML }},
+      "description": {{ .Params.description | default "" | jsonify | safeHTML }},
+      "children": { {{- if or .Sections .RegularPages }}{{ partial "site-tree-children.html" . }}{{ end -}} }
+    }
+{{- end -}}
+{{- range .RegularPages.ByTitle -}}
+{{- if not $childFirst }},{{ end }}{{ $childFirst = false -}}
+{{ path.Base .RelPermalink | jsonify | safeHTML }}: {
+      "type": "page",
+      "title": {{ .Title | jsonify | safeHTML }},
+      "path": {{ .RelPermalink | jsonify | safeHTML }},
+      "description": {{ .Params.description | default "" | jsonify | safeHTML }}
+    }
+{{- end -}}

@@ -29,6 +29,12 @@ params:
     - name: "contact"
       label: "contact"
       description: "Get in touch"
+    - name: "blog"
+      label: "blog"
+      description: "Blog posts and articles"
+    - name: "docs"
+      label: "docs"
+      description: "Documentation"
 
   # Colour overrides - override individual dark/light mode colours.
   # Omit entirely to use theme defaults. See theme hugo.yaml for all keys.
@@ -49,5 +55,8 @@ outputs:
   home:
     - HTML
   page:
+    - HTML
+    - fragment
+  section:
     - HTML
     - fragment

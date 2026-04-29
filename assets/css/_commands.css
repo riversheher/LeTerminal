@@ -43,6 +43,14 @@
   border-radius: 2px;
 }
 
+.terminal-command--directory {
+  font-weight: bold;
+}
+
+.terminal-command--builtin {
+  color: var(--term-text-dim);
+}
+
 /* ==============================================
    Keyboard Input Bar
    ============================================== */
@@ -183,4 +191,56 @@ body:not([data-mode]) .keyboard-bar {
 
 [data-mode="keyboard"] .keyboard-bar {
   display: block;
+}
+
+/* ==============================================
+   Directory Listing (section-content.html)
+   ============================================== */
+.directory-listing {
+  margin-top: 8px;
+}
+
+.directory-listing__heading {
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+  color: var(--term-text-dim);
+  margin: 0 0 8px 0;
+}
+
+.directory-listing__item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.directory-listing__type {
+  flex-shrink: 0;
+  width: 4ch;
+  color: var(--term-text-dim);
+  margin-right: 4px;
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+}
+
+/* ==============================================
+   LS Command Output (filesystem.js)
+   ============================================== */
+.ls-output {
+  border-collapse: collapse;
+  width: auto;
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+}
+
+.ls-output__type {
+  color: var(--term-text-dim);
+  padding-right: 16px;
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
+}
+
+.ls-output__name {
+  font-family: var(--term-font);
+  font-size: var(--term-font-size);
 }

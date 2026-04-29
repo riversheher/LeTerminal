@@ -1,21 +1,21 @@
 {{/* Persistent home content - profile card and welcome message */}}
 <div class="profile-card">
-  <div class="profile-card__avatar {{ if not .Site.Params.profileImage }}profile-card__avatar--initials{{ end }}">
-    {{ if .Site.Params.profileImage }}
-      {{- $img := resources.Get .Site.Params.profileImage -}}
+  <div class="profile-card__avatar {{ if not ($.Params.profileImage | default .Site.Params.profileImage) }}profile-card__avatar--initials{{ end }}">
+    {{ if $.Params.profileImage | default .Site.Params.profileImage }}
+      {{- $img := resources.Get ($.Params.profileImage | default .Site.Params.profileImage) -}}
       {{ if $img }}
-        <img src="{{ $img.RelPermalink }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+        <img src="{{ $img.RelPermalink }}" alt="{{ $.Params.profileName | default .Site.Params.profileName | default "Profile" }}">
       {{ else }}
-        <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.profileName | default "Profile" }}">
+        <img src="{{ $.Params.profileImage | default .Site.Params.profileImage }}" alt="{{ $.Params.profileName | default .Site.Params.profileName | default "Profile" }}">
       {{ end }}
     {{ else }}
-      {{ .Site.Params.profileInitials | default "?" }}
+      {{ $.Params.profileInitials | default .Site.Params.profileInitials | default "?" }}
     {{ end }}
   </div>
   <div class="profile-card__info">
-    <h1 class="profile-card__name">{{ .Site.Params.profileName | default "Developer" }}</h1>
-    <p class="profile-card__subtitle">{{ .Site.Params.profileSubtitle | default "" }}</p>
-    {{ with .Site.Params.profileBio }}
+    <h1 class="profile-card__name">{{ $.Params.profileName | default .Site.Params.profileName | default "Developer" }}</h1>
+    <p class="profile-card__subtitle">{{ $.Params.profileSubtitle | default .Site.Params.profileSubtitle | default "" }}</p>
+    {{ with ($.Params.profileBio | default .Site.Params.profileBio) }}
       <p class="profile-card__bio">{{ . }}</p>
     {{ end }}
   </div>
@@ -23,7 +23,7 @@
 
 <div class="welcome-message">
   <p class="welcome-message__title">
-    Welcome to {{ .Site.Params.siteName | default "Portfolio Terminal" }} {{ .Site.Params.siteVersion | default "" }}
+    Welcome to {{ $.Params.siteName | default .Site.Params.siteName | default "Portfolio Terminal" }} {{ $.Params.siteVersion | default .Site.Params.siteVersion | default "" }}
   </p>
   <p class="welcome-message__hint">
     Type "help" to see available commands.

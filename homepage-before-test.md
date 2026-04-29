@@ -1,0 +1,39 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e10]: terminal@portfolio:~
+      - generic [ref=e11]:
+        - button "Toggle light/dark mode" [ref=e12] [cursor=pointer]: ☾ Dark
+        - button "Toggle keyboard mode" [ref=e13] [cursor=pointer]: ⌨ Keyboard
+    - log [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - img "John Developer" [ref=e18]
+          - generic [ref=e19]:
+            - heading "John Developer" [level=1] [ref=e20]
+            - paragraph [ref=e21]: Full Stack Developer | Problem Solver | Tech Enthusiast
+            - paragraph [ref=e22]: Building elegant solutions for complex challenges. Passionate about clean code, user experience, and continuous learning.
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: Welcome to Portfolio Terminal v1.0.0
+          - paragraph [ref=e25]: Type "help" to see available commands.
+      - generic [ref=e26]:
+        - paragraph [ref=e27]: "$ Click a command:"
+        - generic [ref=e28]:
+          - link "help" [ref=e29] [cursor=pointer]:
+            - /url: /help/
+          - link "about" [ref=e30] [cursor=pointer]:
+            - /url: /about/
+          - link "projects" [ref=e31] [cursor=pointer]:
+            - /url: /projects/
+          - link "skills" [ref=e32] [cursor=pointer]:
+            - /url: /skills/
+          - link "contact" [ref=e33] [cursor=pointer]:
+            - /url: /contact/
+          - link "blog" [ref=e34] [cursor=pointer]:
+            - /url: /blog/
+          - link "docs" [ref=e35] [cursor=pointer]:
+            - /url: /docs/
+          - link "clear" [ref=e36] [cursor=pointer]:
+            - /url: "#"
+  - link "Made with Le Terminal" [ref=e38] [cursor=pointer]:
+    - /url: https://github.com/riversheher/LeTerminal

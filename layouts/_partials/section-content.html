@@ -1,0 +1,15 @@
+{{/* section-content — Renders a section page as a directory listing */}}
+{{/* Receives the section page context (.) */}}
+<div class="command-output">
+  <div class="prompt-line">
+    <span class="prompt">$</span> <span class="command-echo">ls {{ .Title | lower }}</span>
+  </div>
+
+  {{- with .Content }}
+  <div class="output-body">
+    {{ . }}
+  </div>
+  {{- end }}
+
+  <div class="section-context" data-section-path="{{ .RelPermalink }}" style="display:none;"></div>
+</div>

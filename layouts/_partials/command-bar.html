@@ -4,10 +4,6 @@
   <div class="command-bar__links">
     {{ range .Site.Params.commands }}
     <a href="/{{ .name }}/"
-       hx-get="/{{ .name }}/fragment.html"
-       hx-target="#dynamic-content"
-       hx-swap="beforeend"
-       hx-push-url="false"
        class="terminal-command"
        data-cmd-name="{{ .name }}"
        data-cmd-description="{{ .description | default "" }}"
@@ -19,6 +15,7 @@
        onclick="clearTerminal(); return false;"
        class="terminal-command"
        data-cmd-name="clear"
+       data-cmd-type="builtin"
        data-cmd-description="Clear terminal output">
       clear
     </a>

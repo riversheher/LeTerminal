@@ -3,3 +3,8 @@
 .playwright-mcp
 public
 .hugo_build.lock
+.opencode
+AGENTS.md
+node_modules
+
+scripts

@@ -1,10 +1,26 @@
 {{/* Footer - Scripts */}}
 {{ $htmx := resources.Get "js/htmx.min.js" }}
 {{ $cmdRegistry := resources.Get "js/command-registry.js" }}
+{{ $fs := resources.Get "js/filesystem.js" }}
 {{ $keyboard := resources.Get "js/keyboard.js" }}
 {{ $terminal := resources.Get "js/terminal.js" }}
+{{ $cmdGen := resources.Get "js/command-generator.js" }}
+{{ $cmdBarUI := resources.Get "js/command-bar-ui.js" }}
 
 <script src="{{ $htmx.RelPermalink }}"></script>
 <script src="{{ $cmdRegistry.RelPermalink }}"></script>
+<script src="{{ $fs.RelPermalink }}"></script>
 <script src="{{ $keyboard.RelPermalink }}"></script>
 <script src="{{ $terminal.RelPermalink }}"></script>
+<script src="{{ $cmdGen.RelPermalink }}"></script>
+<script src="{{ $cmdBarUI.RelPermalink }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof TerminalCommandGenerator !== 'undefined') {
+      TerminalCommandGenerator.init();
+    }
+    if (typeof TerminalCommandBarUI !== 'undefined') {
+      TerminalCommandBarUI.init();
+    }
+  });
+</script>

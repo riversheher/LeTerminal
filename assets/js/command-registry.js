@@ -53,6 +53,33 @@ var TerminalCommands = (function() {
   }
 
   /**
+   * Remove all commands with a given source.
+   * @param {string} source - e.g. 'tree', 'config', 'builtin'
+   */
+  function clearSource(source) {
+    for (var key in _commands) {
+      if (_commands.hasOwnProperty(key) && _commands[key].source === source) {
+        delete _commands[key];
+      }
+    }
+  }
+
+  /**
+   * Get all commands with a given source.
+   * @param {string} source
+   * @returns {object[]}
+   */
+  function getBySource(source) {
+    var result = [];
+    for (var key in _commands) {
+      if (_commands.hasOwnProperty(key) && _commands[key].source === source) {
+        result.push(_commands[key]);
+      }
+    }
+    return result;
+  }
+
+  /**
    * Get a command by exact name.
    * @param {string} name
    * @returns {object|null}
@@ -238,7 +265,9 @@ var TerminalCommands = (function() {
     has: has,
     tabComplete: tabComplete,
     fuzzyMatch: fuzzyMatch,
-    execute: execute
+    execute: execute,
+    clearSource: clearSource,
+    getBySource: getBySource
   };
 })();
 
@@ -295,8 +324,8 @@ function _showInlineHelp(context) {
   html += '<p><strong>Available commands:</strong></p>';
   html += '<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody>';
   for (var i = 0; i < commands.length; i++) {
-    html += '<tr><td><strong>' + commands[i].name + '</strong></td>';
-    html += '<td>' + commands[i].description + '</td></tr>';
+    html += '<tr><td><strong>' + _escapeHtml(commands[i].name) + '</strong></td>';
+    html += '<td>' + _escapeHtml(commands[i].description || '') + '</td></tr>';
   }
   html += '</tbody></table>';
   html += '</div></div>';
