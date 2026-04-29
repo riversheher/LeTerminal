@@ -58,7 +58,7 @@ var TerminalCommandGenerator = (function() {
           if (context.dynamicContent) {
             context.dynamicContent.insertAdjacentHTML('beforeend', html);
           }
-          _scrollToBottom(context.terminalBody);
+          _scrollToNewContent(context.dynamicContent);
         }
       };
     }
@@ -90,10 +90,14 @@ var TerminalCommandGenerator = (function() {
     return div.innerHTML;
   }
 
-  function _scrollToBottom(el) {
-    if (el) {
+  function _scrollToNewContent(container) {
+    if (!container) return;
+    var terminalBody = document.getElementById('terminal-body');
+    if (!terminalBody) return;
+    var target = container.lastElementChild;
+    if (target) {
       requestAnimationFrame(function() {
-        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+        terminalBody.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
       });
     }
   }

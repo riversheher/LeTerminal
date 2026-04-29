@@ -87,7 +87,7 @@ var TerminalFilesystem = (function() {
         }
         html += '</div>';
         context.dynamicContent.insertAdjacentHTML('beforeend', html);
-        _scrollToBottom(context.terminalBody);
+        _scrollToNewContent(context.dynamicContent);
       }
     });
 
@@ -99,7 +99,7 @@ var TerminalFilesystem = (function() {
         if (context.dynamicContent) {
           context.dynamicContent.insertAdjacentHTML('beforeend', html);
         }
-        _scrollToBottom(context.terminalBody);
+        _scrollToNewContent(context.dynamicContent);
       }
     });
 
@@ -115,7 +115,7 @@ var TerminalFilesystem = (function() {
         if (context.dynamicContent) {
           context.dynamicContent.insertAdjacentHTML('beforeend', html);
         }
-        _scrollToBottom(context.terminalBody);
+        _scrollToNewContent(context.dynamicContent);
       }
     });
 
@@ -135,7 +135,7 @@ var TerminalFilesystem = (function() {
         if (context.dynamicContent) {
           context.dynamicContent.insertAdjacentHTML('beforeend', html);
         }
-        _scrollToBottom(context.terminalBody);
+        _scrollToNewContent(context.dynamicContent);
       }
     });
 
@@ -150,7 +150,7 @@ var TerminalFilesystem = (function() {
         if (context.dynamicContent) {
           context.dynamicContent.insertAdjacentHTML('beforeend', html);
         }
-        _scrollToBottom(context.terminalBody);
+        _scrollToNewContent(context.dynamicContent);
       }
     });
   }
@@ -276,7 +276,7 @@ var TerminalFilesystem = (function() {
 
   /**
    * Get available FS commands for the current location.
-   * @returns {Array<{name: string, type: string, title: string, description: string}>}
+   * @returns {Array<{name: string, type: string, title: string, description: string, path?: string}>}
    */
   function getCommands() {
     var entries = ls();
@@ -286,7 +286,8 @@ var TerminalFilesystem = (function() {
         name: entries[i].name,
         type: entries[i].type,
         title: entries[i].title,
-        description: entries[i].description
+        description: entries[i].description,
+        path: entries[i].path
       });
     }
     commands.push({ name: 'reset', type: 'builtin', title: 'reset', description: 'Return to homepage' });
@@ -393,13 +394,18 @@ var TerminalFilesystem = (function() {
   }
 
   /**
-   * Scroll the terminal body to the bottom.
-   * @param {Element|null} el
+   * Scroll the terminal body so newly appended content in a container
+   * appears at the top of the viewport.
+   * @param {Element|null} container - The dynamic content container.
    */
-  function _scrollToBottom(el) {
-    if (el) {
+  function _scrollToNewContent(container) {
+    if (!container) return;
+    var terminalBody = document.getElementById('terminal-body');
+    if (!terminalBody) return;
+    var target = container.lastElementChild;
+    if (target) {
       requestAnimationFrame(function() {
-        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+        terminalBody.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
       });
     }
   }

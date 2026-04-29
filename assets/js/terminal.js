@@ -2,18 +2,42 @@
    Terminal JS - Autoscroll, Clear, Mode Toggle, Theme, Lightbox
    ============================================== */
 
-document.addEventListener('DOMContentLoaded', function() {
+/**
+ * Scroll terminal body so the first newly added content in a container
+ * appears at the top of the viewport.
+ * @param {Element} container - The container that received new content.
+ * @param {Element|null} beforeElement - The last child before new content was added.
+ */
+function scrollToNewContent(container, beforeElement) {
   var terminalBody = document.getElementById('terminal-body');
+  if (!terminalBody || !container) return;
 
-  // After every HTMX swap, scroll to bottom and bind lightbox to new images
+  var target;
+  if (beforeElement && beforeElement.nextElementSibling) {
+    target = beforeElement.nextElementSibling;
+  } else if (!beforeElement && container.firstElementChild) {
+    target = container.firstElementChild;
+  } else {
+    return;
+  }
+
+  requestAnimationFrame(function() {
+    terminalBody.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var _htmxBeforeSwap = {};
+
+  document.body.addEventListener('htmx:beforeSwap', function(event) {
+    if (event.detail.target && event.detail.target.id === 'dynamic-content') {
+      _htmxBeforeSwap.oldLast = event.detail.target.lastElementChild;
+    }
+  });
+
   document.body.addEventListener('htmx:afterSwap', function(event) {
     if (event.detail.target && event.detail.target.id === 'dynamic-content') {
-      requestAnimationFrame(function() {
-        terminalBody.scrollTo({
-          top: terminalBody.scrollHeight,
-          behavior: 'smooth'
-        });
-      });
+      scrollToNewContent(event.detail.target, _htmxBeforeSwap.oldLast);
       _bindLightboxImages(event.detail.target);
     }
   });
@@ -23,13 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.detail.target && event.detail.target.id === 'dynamic-content') {
       var dynamicContent = document.getElementById('dynamic-content');
       if (dynamicContent) {
+        var oldLast = dynamicContent.lastElementChild;
         var errorDiv = document.createElement('div');
         errorDiv.className = 'command-output';
         errorDiv.innerHTML = '<div class="output-body"><p class="text-error">Error: Failed to load content (HTTP ' + event.detail.xhr.status + ')</p></div>';
         dynamicContent.appendChild(errorDiv);
-        requestAnimationFrame(function() {
-          terminalBody.scrollTo({ top: terminalBody.scrollHeight, behavior: 'smooth' });
-        });
+        scrollToNewContent(dynamicContent, oldLast);
       }
     }
   });

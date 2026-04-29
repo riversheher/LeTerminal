@@ -223,14 +223,10 @@ var TerminalKeyboard = (function() {
     html += '<p class="text-dim">Type "help" to see available commands.</p>';
     html += '</div></div>';
 
+    var oldLast = dc.lastElementChild;
     dc.insertAdjacentHTML('beforeend', html);
-
-    // Scroll to bottom
-    var tb = document.getElementById('terminal-body');
-    if (tb) {
-      requestAnimationFrame(function() {
-        tb.scrollTo({ top: tb.scrollHeight, behavior: 'smooth' });
-      });
+    if (typeof scrollToNewContent === 'function') {
+      scrollToNewContent(dc, oldLast);
     }
   }
 
